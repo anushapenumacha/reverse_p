@@ -75,7 +75,7 @@ The tool is developed using Python 3.8. The tool runs as a package. Here are the
     
     * To run the data across the exisiting yara rules 
     ```
-      python project\__init.py__ --file test2.csv --yara yara
+      python project\__init.py__ --file test2.csv --yara yara_files
     ```
 <br/>
    
