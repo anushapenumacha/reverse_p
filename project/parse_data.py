@@ -35,7 +35,7 @@ class Filter:
                 _add_data["type"] = "Process Exit"
                 _add_data["pname"] = _dat[1]
                 _add_data["pid"] = _dat[2]
-                _out = "[{}]:[{}]{}".format( _add_data["type"], _add_data["pid"],_add_data["pname"])
+                _out = "[{}]:[{}]{}--".format( _add_data["type"], _add_data["pid"],_add_data["pname"])
                 if _out not in self.out_data:
                     self.out_data.append(_out)
                 self.all_data.append(_add_data)
@@ -67,7 +67,7 @@ class Filter:
                 _add_data["type"] = "Reg CreateKey"
                 _found = True
             if _dat[3] in ['RegSetValue'] and _dat[5] == 'SUCCESS':
-                _add_data["type"] = "Reg CreateVal"
+                _add_data["type"] = "Reg SetVal"
                 _found = True
                 if "Data" in _dat[6]:
                     _add_data["val"] = _dat[6].split("Data: ")[-1]
@@ -83,9 +83,9 @@ class Filter:
                 _add_data["kname"] = _dat[4]
                 _add_data["pid"] = _dat[2]
                 _add_data["pname"] = _dat[1]
-                _out = "[{}]:[{}]{}-->{}".format(_add_data["type"],  _add_data["pid"], _add_data["pname"], _add_data["kname"])
+                _out = "[{}]:[{}]{}-->{}\n".format(_add_data["type"],  _add_data["pid"], _add_data["pname"], _add_data["kname"])
                 if "val" in _add_data.keys():
-                    _out += "data-->{}".format(_add_data["val"])
+                    _out += "[data-->{}]".format(_add_data["val"])
                 #Limit to only run key registry events [ Detect persistence ]
                 if _out not in self.out_data:
                     self.out_data.append(_out)
@@ -125,8 +125,8 @@ class Filter:
                     if match.group(1) in pid_list:
                         self.filtered_list.append(_val)
                 if pname_list != None:
-                    match = any([re.search('\[([0-9]{{3,}})\]{pname}-->'.format(pname=pname), _val) != None for pname in pname_list])
-                    match1 = any([re.search(r'{pname}\[([0-9]{{3,}})\]'.format(pname=pname), _val) != None for pname in pname_list])
+                    match = any([re.search('\[([0-9]{{3,}})\]{pname}--'.format(pname=pname.lower()), _val.lower()) != None for pname in pname_list])
+                    match1 = any([re.search(r'{pname}\[([0-9]{{3,}})\]'.format(pname=pname.lower()), _val.lower()) != None for pname in pname_list])
                     if match or match1:
                         self.filtered_list.append(_val)
         return self.filtered_list

@@ -23,18 +23,29 @@ class yara_parse:
     def display_output(self):
         keywords = []
         yara_list = []
+        data = ""
+        data += ("******************************************************\n")
+        data += ("**************** YARA OUTPUT**************************\n")
         for key in self.matches.keys():
-            print("Description: {}".format(self.matches[key][0]["meta"]["Description"]))
+            data += ("Description: {}\n".format(self.matches[key][0]["meta"]["Description"]))
             for str1 in self.matches[key][0]["strings"]:
                 keywords.append(str1["data"])
             keywords = list(set(keywords))
         for key in keywords:
-            print("Keyword found from YARA : {}".format(key))
+            data += ("Keyword found : {}\n".format(key))
         for word in self.out_list:
             if any([key in word for key in keywords]):
                 yara_list.append(word)
+        data += ("******************************************************\n")
+        data += ("**************** LOGS FOUND***************************\n")
         for _dat in yara_list:
-            print(_dat)
+            data += (_dat)
+            data += "\n"
+        data += ("******************************************************")
+        y_file = open("yara_output.log","w")
+        y_file.write(data)
+        y_file.close()
+        print("YARA output has been written to yara_output.log")
 
 
 

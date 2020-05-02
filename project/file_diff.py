@@ -11,6 +11,6 @@ class diff_data:
         d = difflib.HtmlDiff()
         result = d.make_file(self.data1, self.data2)
         result = result.replace('td nowrap="nowrap"', 'td')
-        with open("test.html", 'w') as f:
+        with open("compare.html", 'w') as f:
             f.writelines(result)
-        print("Your output has been written to test.html in the same directory")
+        print("Your output has been written to compare.html in the same directory")
