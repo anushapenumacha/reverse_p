@@ -1,1 +1,1 @@
-yara
+yara-python

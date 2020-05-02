@@ -9,6 +9,5 @@ setup(
     version = "1.0.0",
     author = "apenumac",
     description = ("ProcMon log parser"),
-    packages = find_packages(),
-    install_requires = ['yara']
+    packages = find_packages()
 )
