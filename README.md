@@ -87,4 +87,9 @@ Our tool is heavily dependent on ProcMon logs. ProcMon is very strong in terms o
 ### Conclusion
 Automated behaviour analysis tools aid  in malware analysis process by reducing few repetitive tasks. Such tools when enhanced can provide advanced intelligence and detection capabilities.
 
+### References
+* https://docs.microsoft.com/en-us/sysinternals/downloads/procmon
+* https://www.ghettoforensics.com/2016/01/creating-malware-sandbox-in-seconds.html
+
+
 
