@@ -38,7 +38,8 @@ The tool is developed using Python 3.8. The tool runs as a package. Here are the
 
 1. Install latest python 3
 2. Move to the directory containing setup.py
-3. perform pip install requirements.txt [ We need YARA python to be installed for the tool to function. It can also be installed using ```pip install yara```]
+3. perform pip install requirements.txt [ We need YARA python to be installed for the tool to function. It can also be installed using ```pip install yara-python```]
+    * **Note** If yara-python fails to install from pip, install it from git source present here https://github.com/VirusTotal/yara-python
 4. Build our tool package using ```pip install .```
 5. Run the tool: 
     * View the tool help
